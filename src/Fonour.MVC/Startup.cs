@@ -41,10 +41,11 @@ namespace Fonour.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             //获取数据库连接字符串
-            var sqlConnectionString = Configuration.GetConnectionString("Default");
+            var sqlConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
             //添加数据上下文
-            services.AddDbContext<FonourDbContext>(options => options.UseNpgsql(sqlConnectionString));
+            //services.AddDbContext<FonourDbContext>(options => options.UseNpgsql(sqlConnectionString));
+            services.AddDbContext<FonourDbContext>(options => options.UseSqlServer(sqlConnectionString));
             //依赖注入
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserAppService, UserAppService>();

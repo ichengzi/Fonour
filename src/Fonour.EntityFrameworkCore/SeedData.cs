@@ -14,6 +14,8 @@ namespace Fonour.EntityFrameworkCore
         {
             using (var context = new FonourDbContext(serviceProvider.GetRequiredService<DbContextOptions<FonourDbContext>>()))
             {
+                context.Database.EnsureCreated();
+
                 if (context.Users.Any())
                 {
                     return;   // 已经初始化过数据，直接返回
